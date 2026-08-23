@@ -1,6 +1,6 @@
 [mysqld]
-bind-address = 0.0.0.0
-port = 3306
+bind-address = 0.0.0.0 #Bütün Ip isteklerini kabul et 
+port = 3306 
 socket = /var/run/mysqld/mysqld.sock
 datadir = /var/lib/mysql
 log-error = /var/log/mysql/error.log

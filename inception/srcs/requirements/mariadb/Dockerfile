@@ -1,21 +1,21 @@
 FROM debian:bookworm
 
-# Install MariaDB
-RUN apt-get update && apt-get install -y \
-    mariadb-server \
+RUN apt-get update && apt-get install -y mariadb-server \
     && rm -rf /var/lib/apt/lists/*
 
-# Create directories
-# Create directories and set permissions
+
 RUN mkdir -p /var/run/mysqld /var/log/mysql \
     && chown -R mysql:mysql /var/run/mysqld /var/log/mysql \
     && chmod 755 /var/run/mysqld
-    
-# Copy configuration
+#mariadb indirildikten sonra normalde msyqsld ve mysql dosyalarını oluşur ama bunu işletim sistemi 
+#yönetcisi otomatik yapar bizim docker ortamımızda bu olmadığı için elimiz ile oluştuuyoruz
+
+
+#Eğer bilgisayarda bir dosya aççılıcak log tutulcak ve bu tarz dosyalar  açılcaksa mariadb bu dosyaları oluşturmaz işletim sisteminden ister o oluşturur
+        
 COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 COPY tools/init_db.sh /usr/local/bin/
 
-# Set permissions
 RUN chmod +x /usr/local/bin/init_db.sh
 
 EXPOSE 3306

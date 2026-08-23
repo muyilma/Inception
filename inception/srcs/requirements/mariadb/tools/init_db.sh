@@ -5,7 +5,8 @@ set -e
 echo "Starting MariaDB initialization..."
 
 # Initialize MySQL data directory if it doesn't exist
-if [ ! -d "/var/lib/mysql/mysql" ]; then
+if [ ! -d "/var/lib/mysql/mysql" ]
+then
     echo "Initializing data directory..."
     mysql_install_db --user=mysql --datadir=/var/lib/mysql > /dev/null
 fi
@@ -14,8 +15,8 @@ fi
 echo "Starting temporary MariaDB server for setup..."
 mysqld --skip-networking --socket=/run/mysqld/mysqld.sock --user=mysql &
 pid="$!"
-
-# Wait for MariaDB to be ready
+    
+# Wait for MariaDB to be ready  
 echo "Waiting for MariaDB to be ready..."
 until mysqladmin --socket=/run/mysqld/mysqld.sock ping >/dev/null 2>&1; do
     sleep 1
