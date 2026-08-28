@@ -18,8 +18,10 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 # Klasörleri ayarla
 WORKDIR /var/www/html
 
-# Senin bulduğun o mükemmel port 9000 ayarını kopyala
-COPY conf/www.conf /etc/php/8.2/fpm/pool.d/www.conf
+COPY conf/www.conf /tmp/my_wp.conf
+RUN cat /tmp/my_wp.conf >> /etc/php/8.2/fpm/pool.d/www.conf
+RUN rm /tmp/my_wp.conf
+# ------------------------------------------------------
 
 # Betiğimizi kopyala
 COPY tools/setup_wordpress.sh /usr/local/bin/
