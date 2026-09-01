@@ -1,3 +1,7 @@
 [mysqld]
 bind-address = 0.0.0.0 #Bütün Ip isteklerini kabul et 
 port = 3306 
+#--------------Opsiyonel--------------------------------
+expire_logs_days = 10 #10gün sonra bütün logları siler
+character-set-server  = utf8mb4 
+collation-server      = utf8mb4_general_ci #türkçe karakter ve emoji için 

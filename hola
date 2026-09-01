@@ -9,7 +9,7 @@ Linux işletim sistemi nasıl çalışır?(stdin, stdout, stderr)
 PID, Soket ve PORT?
 Docker-netwowk nasıl çalışır?
 volumler nedir nasıl çlaışır?
-
+.cnf ile .conf arasındaki fark
 
 Docker CLI komutları:
 -> docker ps
