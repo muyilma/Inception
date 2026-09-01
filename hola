@@ -1,0 +1,27 @@
+Docker nedir?
+Docker Compose nedir?
+Docker image nedir?
+Image layerler nelerdir nasıl olşurlar?
+Docker imageler bir .tar dosyayısı mıdır?
+Docker compose ile kullanılan bir Docker image'ı ile kullanılmayanın arasındaki fark.?
+sanal makine ile farkı? sağladığı fayda?
+Linux işletim sistemi nasıl çalışır?(stdin, stdout, stderr)
+PID, Soket ve PORT?
+Docker-netwowk nasıl çalışır?
+volumler nedir nasıl çlaışır?
+
+
+Docker CLI komutları:
+-> docker ps
+-> vb.
+
+Dockerfile komutları:
+-> FROM
+-> RUN
+-> CMD
+-> ENTRYPOINT
+-> vb.
+
+
+#!/bin/bash
+

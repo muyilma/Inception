@@ -5,7 +5,6 @@ services:
     build: requirements/mariadb
     container_name: mariadb
     restart: always
-    # Gizli şifreleri dışarıdaki .env dosyamızdan çekiyoruz
     env_file:
       - .env
     networks:
@@ -17,7 +16,6 @@ services:
     build: requirements/wordpress
     container_name: wordpress
     restart: always
-    # Veritabanı hazır olmadan WordPress'i ayağa kaldırma kuralı
     depends_on:
       - mariadb
     env_file:
@@ -31,24 +29,19 @@ services:
     build: requirements/nginx
     container_name: nginx
     restart: always
-    # WordPress motoru çalışmadan kapıları açma kuralı
     depends_on:
       - wordpress
-    # Sitenin dış dünyaya açılan tek kapısı
     ports:
       - "443:443"
     networks:
       - inception-network
-    # NGINX'in .php dosyalarını görebilmesi için aynı klasöre erişmesi şart
     volumes:
       - wordpress_data:/var/www/html
 
-# İzole Köprü Ağı
 networks:
   inception-network:
     driver: bridge
 
-# Proje Zorunluluğu: Verilerin Host Makinesinde Tutulması
 volumes:
   mariadb_data:
     driver: local

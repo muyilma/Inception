@@ -1,20 +1,16 @@
 #!/bin/bash
 set -e
 
-# SSL klasörünün olduğundan emin ol
 mkdir -p /etc/nginx/ssl
 
-# Sertifika daha önce üretilmemişse üret
 if [ ! -f /etc/nginx/ssl/inception.crt ]; then
     echo "musyilma.42.fr için SSL sertifikası üretiliyor..."
 
-    # Senin 42 kimliğine özel sertifika (isimleri inception.key ve inception.crt yaptık ki conf ile eşleşsin)
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
         -keyout /etc/nginx/ssl/inception.key \
         -out /etc/nginx/ssl/inception.crt \
         -subj "/C=TR/ST=Istanbul/L=Istanbul/O=42/OU=42/CN=musyilma.42.fr/UID=musyilma"
 
-    # Güvenlik izinleri (Değerlendirmede burayı kesinlikle açıkla)
     chmod 600 /etc/nginx/ssl/inception.key
     chmod 644 /etc/nginx/ssl/inception.crt
 
@@ -23,11 +19,9 @@ else
     echo "Sertifika zaten var. Üretim atlanıyor."
 fi
 
-# NGINX ayarlarında hata var mı diye test et
 echo "NGINX konfigürasyonu test ediliyor..."
 nginx -t
 echo "Test başarılı!"
 
-# NGINX'i ön planda başlat (PID 1)
 echo "NGINX başlatılıyor..."
 exec nginx -g "daemon off;"
