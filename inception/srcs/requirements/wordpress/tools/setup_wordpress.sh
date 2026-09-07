@@ -30,7 +30,7 @@ if [ ! -f "$WP_PATH/wp-config.php" ]; then
     chmod -R 755 $WP_PATH
 
 else
-    echo "WordPress zaten kurulu, kurulum atlanıyor."
+    echo "WordPress is already installed, the installation is being skipped."
 fi
 
 exec php-fpm8.2 -F

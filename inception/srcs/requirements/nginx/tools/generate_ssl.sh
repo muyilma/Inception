@@ -4,7 +4,6 @@ set -e
 mkdir -p /etc/nginx/ssl
 
 if [ ! -f /etc/nginx/ssl/inception.crt ]; then
-    echo "musyilma.42.fr için SSL sertifikası üretiliyor..."
 
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
         -keyout /etc/nginx/ssl/inception.key \
@@ -14,14 +13,10 @@ if [ ! -f /etc/nginx/ssl/inception.crt ]; then
     chmod 600 /etc/nginx/ssl/inception.key
     chmod 644 /etc/nginx/ssl/inception.crt
 
-    echo "Sertifika başarıyla üretildi!"
 else
-    echo "Sertifika zaten var. Üretim atlanıyor."
+    echo "The certificate already exists. Production is being skipped."
 fi
 
-echo "NGINX konfigürasyonu test ediliyor..."
 nginx -t
-echo "Test başarılı!"
 
-echo "NGINX başlatılıyor..."
 exec nginx -g "daemon off;"

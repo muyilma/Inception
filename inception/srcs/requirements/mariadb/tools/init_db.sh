@@ -3,7 +3,6 @@
 set -e
 
 if [ ! -d "/var/lib/mysql/${MYSQL_DATABASE}" ]; then
-    echo "Starting MariaDB initialization..."
     
     service mariadb start
 
@@ -20,5 +19,4 @@ else
     echo "MariaDB is already installed..."
 fi
 
-echo "Initialization complete. Starting MariaDB in foreground..."
 exec mariadbd --user=mysql
