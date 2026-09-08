@@ -9,6 +9,9 @@ services:
       - inception-network
     volumes:
       - mariadb_data:/var/lib/mysql
+    secrets:
+      - db_password
+      - db_root_password
 
   wordpress:
     build: requirements/wordpress
@@ -22,6 +25,9 @@ services:
       - inception-network
     volumes:
       - wordpress_data:/var/www/html
+    secrets:
+      - db_password
+      - credentials
 
   nginx:
     build: requirements/nginx
@@ -53,3 +59,11 @@ volumes:
       type: none
       o: bind
       device: /home/${USER}/data/wordpress
+
+secrets:
+  db_password:
+    file: ../secrets/db_password.txt
+  db_root_password:
+    file: ../secrets/db_root_password.txt
+  credentials:
+    file: ../secrets/credentials.txt

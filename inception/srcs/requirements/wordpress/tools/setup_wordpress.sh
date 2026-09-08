@@ -3,13 +3,17 @@ set -e
 
 WP_PATH="/var/www/html"
 
+MYSQL_PASSWORD=$(cat /run/secrets/db_password | tr -d '\r')
+WP_ADMIN_PASSWORD=$(grep WP_ADMIN_PASSWORD /run/secrets/credentials | cut -d '=' -f2- | tr -d '\r')
+WP_USER_PASSWORD=$(grep WP_USER_PASSWORD /run/secrets/credentials | cut -d '=' -f2- | tr -d '\r')
+
 if [ ! -f "$WP_PATH/wp-config.php" ]; then
     wp core download --allow-root --path=$WP_PATH
 
     wp config create \
         --dbname=$MYSQL_DATABASE \
         --dbuser=$MYSQL_USER \
-        --dbpass=$MYSQL_PASSWORD \
+        --dbpass="$MYSQL_PASSWORD" \
         --dbhost=mariadb:3306 \
         --allow-root --path=$WP_PATH
 
@@ -17,13 +21,13 @@ if [ ! -f "$WP_PATH/wp-config.php" ]; then
         --url=musyilma.42.fr \
         --title="Inception Project" \
         --admin_user=$WP_ADMIN \
-        --admin_password=$WP_ADMIN_PASSWORD \
+        --admin_password="$WP_ADMIN_PASSWORD" \
         --admin_email=$WP_ADMIN_EMAIL \
         --allow-root --path=$WP_PATH
 
     wp user create $WP_USER $WP_USER_EMAIL \
         --role=author \
-        --user_pass=$WP_USER_PASSWORD \
+        --user_pass="$WP_USER_PASSWORD" \
         --allow-root --path=$WP_PATH
 
     chown -R www-data:www-data $WP_PATH
