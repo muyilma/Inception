@@ -1,8 +1,6 @@
 COMPOSE_FILE = srcs/docker-compose.yml
 DATA_DIR = /home/$(USER)/data
 
-.PHONY: all build up down clean fclean re
-
 all: build up
 
 $(DATA_DIR)/mariadb:
@@ -29,3 +27,5 @@ fclean: clean
 	sudo rm -rf $(DATA_DIR)
 
 re: fclean all
+
+.PHONY: all build up down clean fclean re
