@@ -18,14 +18,19 @@ up:
 down:
 	docker compose -f $(COMPOSE_FILE) down
 
-clean:
-	docker compose -f $(COMPOSE_FILE) down
-	docker system prune -af
+start:
+	docker compose -f $(COMPOSE_FILE) start
 
-fclean: clean
-	docker volume prune -f
+stop:
+	docker compose -f $(COMPOSE_FILE) stop
+
+clean:
+	docker compose -f $(COMPOSE_FILE) down --rmi all 
+
+fclean: 
+	docker compose -f $(COMPOSE_FILE) down --rmi all --volumes
 	sudo rm -rf $(DATA_DIR)
 
 re: fclean all
 
-.PHONY: all build up down clean fclean re
+.PHONY: all build up down clean fclean re start stop
