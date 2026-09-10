@@ -37,14 +37,16 @@ Key design choices include:
     ```
 4.  **Access:** Open your web browser and navigate to `https://musyilma.42.fr`.
 
+See USER_DOC.md and DEV_DOC.md for detailed usage and development instructions.
+
 ### Maintenance Commands
 *   To stop the containers: `make down`
 *   To stop and remove containers/networks: `make clean`
 *   To completely wipe the system including persistent data volumes: `make fclean`
 
 ## Resources
-*   [Docker Official Documentation](https://docs.docker.com/)
+*   [Docker Official Documentation](https://docs.docker.com/manuals/)
 *   [NGINX Documentation](https://nginx.org/en/docs/)
 *   [MariaDB Server Documentation](https://mariadb.com/kb/en/documentation/)
 *   [WordPress Developer Resources](https://developer.wordpress.org/)
-*   **AI Usage:** Artificial Intelligence (Gemini) was utilized during the development of this project primarily for theoretical brainstorming and debugging. It was used to discuss internal Linux kernel mechanics (such as the `chroot`, `namespaces`, `cgroups` trinity), explore the architecture of OverlayFS and `containerd` snapshotters, and identify syntax errors in Bash shell scripting (specifically regarding variable assignments and whitespace rules).
+*   **AI Usage:** Artificial Intelligence was utilized during the development of this project primarily for theoretical brainstorming and debugging. It was used to discuss internal Linux kernel mechanics (such as the `chroot`, `namespaces`, `cgroups` trinity), explore the architecture of OverlayFS and `containerd` snapshotters, and identify syntax errors in Bash shell scripting (specifically regarding variable assignments and whitespace rules).

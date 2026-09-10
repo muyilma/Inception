@@ -32,13 +32,13 @@ Use the following commands for deep management and debugging:
 *   **View real-time logs:** `docker logs -f <container_name>`
 *   **Soft Clean (Stop and remove containers/networks):** `make clean`
 *   **Deep Clean / Factory Reset:** `make fclean`
-    *Warning:* `make fclean` will prune all Docker volumes, networks, images, and forcefully remove the physical host directories (`/home/$(USER)/data`) using `sudo rm -rf`. This wipes the database and website completely.
+    *Warning:* `make fclean` will prune all Docker volumes, networks, images, and forcefully remove the physical host directories (`/home/musyilma/data`) using `sudo rm -rf`. This wipes the database and website completely.
 
 ## 4. Project Data Storage and Persistence
 This project relies on **Bind Mounts** to achieve data persistence, ensuring that data outlives the ephemeral containers.
 *   **Where is the data stored?** 
-    The data is physically stored on the host machine at `/home/$(USER)/data`.
-    *   MariaDB database files: `/home/$(USER)/data/mariadb`
-    *   WordPress core and uploaded files: `/home/$(USER)/data/wordpress`
+    The data is physically stored on the host machine at `/home/musyilma/data`.
+    *   MariaDB database files: `/home/musyilma/data/mariadb`
+    *   WordPress core and uploaded files: `/home/musyilma/data/wordpress`
 *   **How does it persist?**
     The `docker-compose.yml` uses the `driver_opts` feature under the `volumes` section to bind these specific host directories to the respective container directories (`/var/lib/mysql` and `/var/www/html`). When a container is destroyed, the Docker virtual filesystem layers are deleted, but the host directories remain untouched. Upon a new `make up`, the new containers simply re-attach to the existing data.
