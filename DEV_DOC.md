@@ -10,6 +10,7 @@ This document is intended for developers who want to set up, build, manage, and 
 *   `make` utility installed.
 *   Local DNS routing: Add `127.0.0.1 musyilma.42.fr` to your `/etc/hosts` file.
 
+
 **Configuration & Secrets Setup:**
 1.  Navigate to the `srcs/` directory and ensure the `.env` file contains the non-sensitive configuration variables (e.g., database name, usernames, emails).
 2.  Navigate to the root directory and create a `secrets/` folder.
